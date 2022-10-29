@@ -11,7 +11,7 @@ export class ProfileResolver {
     return this.profileService.create(createProfileInput);
   }
 
-  @Query('profile')
+  @Query('profiles')
   findAll() {
     return this.profileService.findAll();
   }
@@ -23,7 +23,10 @@ export class ProfileResolver {
 
   @Mutation('updateProfile')
   update(@Args('updateProfileInput') updateProfileInput: UpdateProfileInput) {
-    return this.profileService.update(updateProfileInput.id);
+    return this.profileService.update(
+      updateProfileInput.id,
+      updateProfileInput,
+    );
   }
 
   @Mutation('removeProfile')

@@ -8,7 +8,8 @@ import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { ProfileModule } from './profile/profile.module';
-
+import { BioFactorModule } from './bio-factor/bio-factor.module';
+import { GraphQLDateTime } from 'graphql-iso-date';
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -16,6 +17,7 @@ import { ProfileModule } from './profile/profile.module';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       typePaths: ['./**/*.graphql'],
+      resolvers: { DateTime: GraphQLDateTime },
       definitions: {
         path: join(process.cwd(), 'src/types/graphql.ts'),
         outputAs: 'class',
@@ -25,6 +27,7 @@ import { ProfileModule } from './profile/profile.module';
     PrismaModule,
     UserModule,
     ProfileModule,
+    BioFactorModule,
   ],
   controllers: [],
   providers: [PrismaService],

@@ -17,6 +17,8 @@ const prisma_module_1 = require("./prisma/prisma.module");
 const user_module_1 = require("./user/user.module");
 const config_1 = require("@nestjs/config");
 const profile_module_1 = require("./profile/profile.module");
+const bio_factor_module_1 = require("./bio-factor/bio-factor.module");
+const graphql_iso_date_1 = require("graphql-iso-date");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -27,6 +29,7 @@ AppModule = __decorate([
                 playground: false,
                 plugins: [(0, apollo_server_core_1.ApolloServerPluginLandingPageLocalDefault)()],
                 typePaths: ['./**/*.graphql'],
+                resolvers: { DateTime: graphql_iso_date_1.GraphQLDateTime },
                 definitions: {
                     path: (0, path_1.join)(process.cwd(), 'src/types/graphql.ts'),
                     outputAs: 'class',
@@ -36,6 +39,7 @@ AppModule = __decorate([
             prisma_module_1.PrismaModule,
             user_module_1.UserModule,
             profile_module_1.ProfileModule,
+            bio_factor_module_1.BioFactorModule,
         ],
         controllers: [],
         providers: [prisma_service_1.PrismaService],

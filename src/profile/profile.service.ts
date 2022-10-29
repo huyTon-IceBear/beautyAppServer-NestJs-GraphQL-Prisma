@@ -6,9 +6,9 @@ import { CreateProfileInput, UpdateProfileInput } from 'src/types/graphql';
 export class ProfileService {
   constructor(private prisma: PrismaService) {}
 
-  create({ userEmail }: CreateProfileInput) {
+  create({ userEmail, age, gender }: CreateProfileInput) {
     return this.prisma.profile.create({
-      data: { userEmail },
+      data: { userEmail, age, gender },
     });
   }
 
@@ -22,8 +22,11 @@ export class ProfileService {
     });
   }
 
-  update(id: number) {
-    return `This action updates a #${id} profile`;
+  update(id: number, { age, gender }: UpdateProfileInput) {
+    return this.prisma.profile.update({
+      where: { id },
+      data: { age, gender },
+    });
   }
 
   remove(id: number) {

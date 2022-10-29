@@ -6,9 +6,9 @@ import { CreateUserInput, UpdateUserInput } from 'src/types/graphql';
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  create({ name, email }: CreateUserInput) {
+  create({ name, email, password }: CreateUserInput) {
     return this.prisma.user.create({
-      data: { name, email },
+      data: { name, email, password },
     });
   }
 
@@ -19,7 +19,6 @@ export class UserService {
   findOne(id: number) {
     return this.prisma.user.findUnique({
       where: { id },
-      select: { name: true, id: false },
     });
   }
 

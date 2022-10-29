@@ -16,9 +16,9 @@ let UserService = class UserService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    create({ name, email }) {
+    create({ name, email, password }) {
         return this.prisma.user.create({
-            data: { name, email },
+            data: { name, email, password },
         });
     }
     findAll() {
@@ -27,7 +27,6 @@ let UserService = class UserService {
     findOne(id) {
         return this.prisma.user.findUnique({
             where: { id },
-            select: { name: true, id: false },
         });
     }
     update(id, { name }) {

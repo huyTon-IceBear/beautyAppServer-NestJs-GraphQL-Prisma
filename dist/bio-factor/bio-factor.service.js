@@ -9,41 +9,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProfileService = void 0;
+exports.BioFactorService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
-let ProfileService = class ProfileService {
-    constructor(prisma) {
-        this.prisma = prisma;
+let BioFactorService = class BioFactorService {
+    constructor(schema) {
+        this.schema = schema;
     }
-    create({ userEmail, age, gender }) {
-        return this.prisma.profile.create({
-            data: { userEmail, age, gender },
+    create({ type, name, description, profileId }) {
+        return this.schema.bioFactor.create({
+            data: {
+                type,
+                name,
+                description,
+                profileId,
+            },
         });
     }
     findAll() {
-        return this.prisma.profile.findMany();
+        return this.schema.bioFactor.findMany();
     }
     findOne(id) {
-        return this.prisma.profile.findUnique({
-            where: { id },
-        });
+        return this.schema.bioFactor.findUnique({ where: { id } });
     }
-    update(id, { age, gender }) {
-        return this.prisma.profile.update({
+    update(id, { type, name, description }) {
+        return this.schema.bioFactor.update({
             where: { id },
-            data: { age, gender },
+            data: {
+                type,
+                name,
+                description,
+            },
         });
     }
     remove(id) {
-        return this.prisma.profile.delete({
-            where: { id },
-        });
+        return this.schema.bioFactor.delete({ where: { id } });
     }
 };
-ProfileService = __decorate([
+BioFactorService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], ProfileService);
-exports.ProfileService = ProfileService;
-//# sourceMappingURL=profile.service.js.map
+], BioFactorService);
+exports.BioFactorService = BioFactorService;
+//# sourceMappingURL=bio-factor.service.js.map

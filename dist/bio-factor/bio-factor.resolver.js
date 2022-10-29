@@ -12,67 +12,67 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProfileResolver = void 0;
+exports.BioFactorResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const bio_factor_service_1 = require("./bio-factor.service");
 const graphql_2 = require("../types/graphql");
-const profile_service_1 = require("./profile.service");
-let ProfileResolver = class ProfileResolver {
-    constructor(profileService) {
-        this.profileService = profileService;
+let BioFactorResolver = class BioFactorResolver {
+    constructor(bioFactorService) {
+        this.bioFactorService = bioFactorService;
     }
-    create(createProfileInput) {
-        return this.profileService.create(createProfileInput);
+    create(createBioFactorInput) {
+        return this.bioFactorService.create(createBioFactorInput);
     }
     findAll() {
-        return this.profileService.findAll();
+        return this.bioFactorService.findAll();
     }
     findOne(id) {
-        return this.profileService.findOne(id);
+        return this.bioFactorService.findOne(id);
     }
-    update(updateProfileInput) {
-        return this.profileService.update(updateProfileInput.id, updateProfileInput);
+    update(updateBioFactorInput) {
+        return this.bioFactorService.update(updateBioFactorInput.id, updateBioFactorInput);
     }
     remove(id) {
-        return this.profileService.remove(id);
+        return this.bioFactorService.remove(id);
     }
 };
 __decorate([
-    (0, graphql_1.Mutation)('createProfile'),
-    __param(0, (0, graphql_1.Args)('createProfileInput')),
+    (0, graphql_1.Mutation)('createBioFactor'),
+    __param(0, (0, graphql_1.Args)('createBioFactorInput')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [graphql_2.CreateProfileInput]),
+    __metadata("design:paramtypes", [graphql_2.CreateBioFactorInput]),
     __metadata("design:returntype", void 0)
-], ProfileResolver.prototype, "create", null);
+], BioFactorResolver.prototype, "create", null);
 __decorate([
-    (0, graphql_1.Query)('profiles'),
+    (0, graphql_1.Query)('bioFactors'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], ProfileResolver.prototype, "findAll", null);
+], BioFactorResolver.prototype, "findAll", null);
 __decorate([
-    (0, graphql_1.Query)('profile'),
+    (0, graphql_1.Query)('bioFactor'),
     __param(0, (0, graphql_1.Args)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
-], ProfileResolver.prototype, "findOne", null);
+], BioFactorResolver.prototype, "findOne", null);
 __decorate([
-    (0, graphql_1.Mutation)('updateProfile'),
-    __param(0, (0, graphql_1.Args)('updateProfileInput')),
+    (0, graphql_1.Mutation)('updateBioFactor'),
+    __param(0, (0, graphql_1.Args)('updateBioFactorInput')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [graphql_2.UpdateProfileInput]),
+    __metadata("design:paramtypes", [graphql_2.UpdateBioFactorInput]),
     __metadata("design:returntype", void 0)
-], ProfileResolver.prototype, "update", null);
+], BioFactorResolver.prototype, "update", null);
 __decorate([
-    (0, graphql_1.Mutation)('removeProfile'),
+    (0, graphql_1.Mutation)('removeBioFactor'),
     __param(0, (0, graphql_1.Args)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
-], ProfileResolver.prototype, "remove", null);
-ProfileResolver = __decorate([
-    (0, graphql_1.Resolver)('Profile'),
-    __metadata("design:paramtypes", [profile_service_1.ProfileService])
-], ProfileResolver);
-exports.ProfileResolver = ProfileResolver;
-//# sourceMappingURL=profile.resolver.js.map
+], BioFactorResolver.prototype, "remove", null);
+BioFactorResolver = __decorate([
+    (0, graphql_1.Resolver)('BioFactor'),
+    __metadata("design:paramtypes", [bio_factor_service_1.BioFactorService])
+], BioFactorResolver);
+exports.BioFactorResolver = BioFactorResolver;
+//# sourceMappingURL=bio-factor.resolver.js.map

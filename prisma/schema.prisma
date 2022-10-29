@@ -11,9 +11,10 @@ datasource db {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  name  String
-  email String @unique
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  name     String
+  password String
 
   profile Profile?
 }
@@ -21,8 +22,58 @@ model User {
 model Profile {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  updateAt  DateTime @updatedAt
+  age       Int?
+  gender    String?
 
   user      User?   @relation(fields: [userEmail], references: [email])
   userEmail String? @unique
+
+  bioFactors BioFactor[]
+}
+
+model BioFactor {
+  id          Int      @id @default(autoincrement())
+  type        String
+  name        String
+  description String
+  profile     Profile? @relation(fields: [profileId], references: [id])
+  profileId   Int?
+}
+
+model Routine {
+  id Int @id
+
+  steps    Step[]
+  articles Article[]
+}
+
+model Step {
+  id          Int     @id
+  complete    Boolean @default(false)
+  name        String
+  description String
+
+  routine   Routine? @relation(fields: [routineId], references: [id])
+  routineId Int?
+
+  Product Product[]
+}
+
+model Article {
+  id          Int    @id
+  description String
+  link        String
+
+  routine   Routine? @relation(fields: [routineId], references: [id])
+  routineId Int?
+}
+
+model Product {
+  id          Int    @id
+  name        String
+  description String
+  price       Int
+
+  step   Step? @relation(fields: [stepId], references: [id])
+  stepId Int?
 }

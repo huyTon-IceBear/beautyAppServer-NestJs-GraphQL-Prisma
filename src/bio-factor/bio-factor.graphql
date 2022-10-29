@@ -1,0 +1,32 @@
+type BioFactor {
+  id: Int!
+  type: String!
+  name: String!
+  description: String!
+  profileId: Int!
+}
+
+input CreateBioFactorInput {
+  type: String!
+  name: String!
+  description: String!
+  profileId: Int!
+}
+
+input UpdateBioFactorInput {
+  id: Int!
+  type: String!
+  name: String!
+  description: String!
+}
+
+type Query {
+  bioFactors: [BioFactor]!
+  bioFactor(id: Int!): BioFactor
+}
+
+type Mutation {
+  createBioFactor(createBioFactorInput: CreateBioFactorInput!): BioFactor!
+  updateBioFactor(updateBioFactorInput: UpdateBioFactorInput!): BioFactor!
+  removeBioFactor(id: Int!): BioFactor
+}
