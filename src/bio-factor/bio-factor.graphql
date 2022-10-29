@@ -3,14 +3,14 @@ type BioFactor {
   type: String!
   name: String!
   description: String!
-  profileId: Int!
+  profileId: Int
 }
 
 input CreateBioFactorInput {
   type: String!
   name: String!
   description: String!
-  profileId: Int!
+  profileId: Int
 }
 
 input UpdateBioFactorInput {

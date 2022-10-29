@@ -29,6 +29,9 @@ model Profile {
   userEmail String? @unique
 
   bioFactors BioFactor[]
+
+  routine   Routine? @relation(fields: [routineId], references: [id])
+  routineId Int?     @unique
 }
 
 model BioFactor {
@@ -45,10 +48,11 @@ model Routine {
 
   steps    Step[]
   articles Article[]
+  profiles Profile[]
 }
 
 model Step {
-  id          Int     @id
+  id          Int     @id @default(autoincrement())
   complete    Boolean @default(false)
   name        String
   description String
@@ -60,7 +64,7 @@ model Step {
 }
 
 model Article {
-  id          Int    @id
+  id          Int    @id @default(autoincrement())
   description String
   link        String
 
@@ -69,7 +73,7 @@ model Article {
 }
 
 model Product {
-  id          Int    @id
+  id          Int    @id @default(autoincrement())
   name        String
   description String
   price       Int

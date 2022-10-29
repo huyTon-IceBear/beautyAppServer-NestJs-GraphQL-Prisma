@@ -10,6 +10,10 @@ import { ConfigModule } from '@nestjs/config';
 import { ProfileModule } from './profile/profile.module';
 import { BioFactorModule } from './bio-factor/bio-factor.module';
 import { GraphQLDateTime } from 'graphql-iso-date';
+import { RoutineModule } from './routine/routine.module';
+import { StepModule } from './step/step.module';
+import { ArticleModule } from './article/article.module';
+import { ProductModule } from './product/product.module';
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -28,6 +32,10 @@ import { GraphQLDateTime } from 'graphql-iso-date';
     UserModule,
     ProfileModule,
     BioFactorModule,
+    RoutineModule,
+    StepModule,
+    ArticleModule,
+    ProductModule,
   ],
   controllers: [],
   providers: [PrismaService],

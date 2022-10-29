@@ -22,10 +22,10 @@ export class ProfileService {
     });
   }
 
-  update(id: number, { age, gender }: UpdateProfileInput) {
+  update(id: number, { age, gender, routineId }: UpdateProfileInput) {
     return this.prisma.profile.update({
       where: { id },
-      data: { age, gender },
+      data: { age, gender, routineId },
     });
   }
 

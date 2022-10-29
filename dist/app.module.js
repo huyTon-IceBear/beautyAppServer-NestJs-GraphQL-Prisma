@@ -19,6 +19,10 @@ const config_1 = require("@nestjs/config");
 const profile_module_1 = require("./profile/profile.module");
 const bio_factor_module_1 = require("./bio-factor/bio-factor.module");
 const graphql_iso_date_1 = require("graphql-iso-date");
+const routine_module_1 = require("./routine/routine.module");
+const step_module_1 = require("./step/step.module");
+const article_module_1 = require("./article/article.module");
+const product_module_1 = require("./product/product.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -40,6 +44,10 @@ AppModule = __decorate([
             user_module_1.UserModule,
             profile_module_1.ProfileModule,
             bio_factor_module_1.BioFactorModule,
+            routine_module_1.RoutineModule,
+            step_module_1.StepModule,
+            article_module_1.ArticleModule,
+            product_module_1.ProductModule,
         ],
         controllers: [],
         providers: [prisma_service_1.PrismaService],

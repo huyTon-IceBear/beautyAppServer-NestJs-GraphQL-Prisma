@@ -1,0 +1,17 @@
+type Routine {
+  id: Int!
+}
+
+input CreateRoutineInput {
+  id: Int!
+}
+
+type Query {
+  routines: [Routine]!
+  routine(id: Int!): Routine
+}
+
+type Mutation {
+  createRoutine(createRoutineInput: CreateRoutineInput!): Routine!
+  removeRoutine(id: Int!): Routine
+}

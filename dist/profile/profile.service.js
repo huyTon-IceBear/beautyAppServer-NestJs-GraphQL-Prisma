@@ -29,10 +29,10 @@ let ProfileService = class ProfileService {
             where: { id },
         });
     }
-    update(id, { age, gender }) {
+    update(id, { age, gender, routineId }) {
         return this.prisma.profile.update({
             where: { id },
-            data: { age, gender },
+            data: { age, gender, routineId },
         });
     }
     remove(id) {

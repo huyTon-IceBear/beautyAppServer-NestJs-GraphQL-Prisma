@@ -1,0 +1,32 @@
+type Step {
+  id: Int!
+  complete: Boolean!
+  name: String!
+  description: String!
+  routineId: Int
+}
+
+input CreateStepInput {
+  name: String!
+  description: String!
+  complete: Boolean!
+  routineId: Int!
+}
+
+input UpdateStepInput {
+  id: Int!
+  name: String!
+  description: String!
+  complete: Boolean!
+}
+
+type Query {
+  steps: [Step]!
+  step(id: Int!): Step
+}
+
+type Mutation {
+  createStep(createStepInput: CreateStepInput!): Step!
+  updateStep(updateStepInput: UpdateStepInput!): Step!
+  removeStep(id: Int!): Step
+}

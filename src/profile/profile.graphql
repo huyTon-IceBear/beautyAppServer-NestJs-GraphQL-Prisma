@@ -3,9 +3,10 @@ scalar DateTime
 type Profile {
   id: Int!
   userEmail: String!
-  age: Int
-  gender: String
-  createAt: DateTime
+  age: Int!
+  gender: String!
+  createAt: DateTime!
+  routineId: Int!
 }
 
 input CreateProfileInput {
@@ -16,6 +17,7 @@ input CreateProfileInput {
 
 input UpdateProfileInput {
   id: Int!
+  routineId: Int
   age: Int
   gender: String
 }
