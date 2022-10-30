@@ -1,6 +1,10 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Login, Register } from 'src/types/graphql';
+import { Login, RefreshToken, Register } from 'src/types/graphql';
 import * as argon from 'argon2';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { JwtService } from '@nestjs/jwt';
@@ -55,6 +59,18 @@ export class AuthService {
     if (!pwMatches) throw new ForbiddenException('Credentials incorrect');
 
     return this.signToken(user.id, user.email);
+  }
+
+  refreshToken({ token }: RefreshToken) {
+    try {
+      const { userId, email } = this.jwt.verify(token, {
+        secret: this.config.get('REFRESH_SECRET'),
+      });
+
+      return this.signToken(userId, email);
+    } catch (e) {
+      throw new UnauthorizedException();
+    }
   }
 
   async signToken(

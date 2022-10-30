@@ -31,6 +31,10 @@ export class Login {
     password: string;
 }
 
+export class RefreshToken {
+    token: JWT;
+}
+
 export class CreateBioFactorInput {
     type: string;
     name: string;
@@ -144,6 +148,8 @@ export abstract class IMutation {
 
     abstract login(login: Login): Auth | Promise<Auth>;
 
+    abstract refreshToken(refreshToken?: Nullable<RefreshToken>): Token | Promise<Token>;
+
     abstract createBioFactor(createBioFactorInput: CreateBioFactorInput): BioFactor | Promise<BioFactor>;
 
     abstract updateBioFactor(updateBioFactorInput: UpdateBioFactorInput): BioFactor | Promise<BioFactor>;
@@ -178,10 +184,15 @@ export abstract class IMutation {
 }
 
 export class Auth {
-    accessToken: string;
-    refreshToken: string;
+    accessToken: JWT;
+    refreshToken: JWT;
     name?: Nullable<string>;
     user?: Nullable<User>;
+}
+
+export class Token {
+    accessToken: JWT;
+    refreshToken: JWT;
 }
 
 export class BioFactor {
@@ -228,5 +239,6 @@ export class User {
     password: string;
 }
 
+export type JWT = any;
 export type DateTime = any;
 type Nullable<T> = T | null;

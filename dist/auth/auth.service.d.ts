@@ -1,5 +1,5 @@
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Login, Register } from 'src/types/graphql';
+import { Login, RefreshToken, Register } from 'src/types/graphql';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 export declare class AuthService {
@@ -12,6 +12,10 @@ export declare class AuthService {
         refreshToken: string;
     }>;
     login({ email, password }: Login): Promise<{
+        accessToken: string;
+        refreshToken: string;
+    }>;
+    refreshToken({ token }: RefreshToken): Promise<{
         accessToken: string;
         refreshToken: string;
     }>;

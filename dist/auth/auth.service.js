@@ -56,6 +56,17 @@ let AuthService = class AuthService {
             throw new common_1.ForbiddenException('Credentials incorrect');
         return this.signToken(user.id, user.email);
     }
+    refreshToken({ token }) {
+        try {
+            const { userId, email } = this.jwt.verify(token, {
+                secret: this.config.get('REFRESH_SECRET'),
+            });
+            return this.signToken(userId, email);
+        }
+        catch (e) {
+            throw new common_1.UnauthorizedException();
+        }
+    }
     async signToken(userId, email) {
         const payload = {
             sub: userId,

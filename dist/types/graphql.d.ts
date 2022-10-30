@@ -17,6 +17,9 @@ export declare class Login {
     email: string;
     password: string;
 }
+export declare class RefreshToken {
+    token: JWT;
+}
 export declare class CreateBioFactorInput {
     type: string;
     name: string;
@@ -100,6 +103,7 @@ export declare abstract class IMutation {
     abstract removeArticle(id: number): Nullable<Article> | Promise<Nullable<Article>>;
     abstract register(register: Register): Auth | Promise<Auth>;
     abstract login(login: Login): Auth | Promise<Auth>;
+    abstract refreshToken(refreshToken?: Nullable<RefreshToken>): Token | Promise<Token>;
     abstract createBioFactor(createBioFactorInput: CreateBioFactorInput): BioFactor | Promise<BioFactor>;
     abstract updateBioFactor(updateBioFactorInput: UpdateBioFactorInput): BioFactor | Promise<BioFactor>;
     abstract removeBioFactor(id: number): Nullable<BioFactor> | Promise<Nullable<BioFactor>>;
@@ -118,10 +122,14 @@ export declare abstract class IMutation {
     abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
 }
 export declare class Auth {
-    accessToken: string;
-    refreshToken: string;
+    accessToken: JWT;
+    refreshToken: JWT;
     name?: Nullable<string>;
     user?: Nullable<User>;
+}
+export declare class Token {
+    accessToken: JWT;
+    refreshToken: JWT;
 }
 export declare class BioFactor {
     id: number;
@@ -161,6 +169,7 @@ export declare class User {
     email: string;
     password: string;
 }
+export declare type JWT = any;
 export declare type DateTime = any;
 declare type Nullable<T> = T | null;
 export {};

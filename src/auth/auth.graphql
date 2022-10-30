@@ -1,8 +1,29 @@
+scalar JWT
+
 type Auth {
-  accessToken: String!
-  refreshToken: String!
+  """
+  JWT access token
+  """
+  accessToken: JWT!
+
+  """
+  JWT refresh token
+  """
+  refreshToken: JWT!
   name: String
   user: User
+}
+
+type Token {
+  """
+  JWT access token
+  """
+  accessToken: JWT!
+
+  """
+  JWT refresh token
+  """
+  refreshToken: JWT!
 }
 
 input Register {
@@ -16,7 +37,12 @@ input Login {
   password: String!
 }
 
+input RefreshToken {
+  token: JWT!
+}
+
 type Mutation {
   register(register: Register!): Auth!
   login(login: Login!): Auth!
+  refreshToken(refreshToken: RefreshToken): Token!
 }

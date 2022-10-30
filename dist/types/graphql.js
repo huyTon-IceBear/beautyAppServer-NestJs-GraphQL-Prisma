@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = exports.Step = exports.Routine = exports.Profile = exports.Product = exports.BioFactor = exports.Auth = exports.IMutation = exports.IQuery = exports.Article = exports.UpdateUserInput = exports.UpdateStepInput = exports.CreateStepInput = exports.CreateRoutineInput = exports.UpdateProfileInput = exports.CreateProfileInput = exports.UpdateProductInput = exports.CreateProductInput = exports.UpdateBioFactorInput = exports.CreateBioFactorInput = exports.Login = exports.Register = exports.UpdateArticleInput = exports.CreateArticleInput = void 0;
+exports.User = exports.Step = exports.Routine = exports.Profile = exports.Product = exports.BioFactor = exports.Token = exports.Auth = exports.IMutation = exports.IQuery = exports.Article = exports.UpdateUserInput = exports.UpdateStepInput = exports.CreateStepInput = exports.CreateRoutineInput = exports.UpdateProfileInput = exports.CreateProfileInput = exports.UpdateProductInput = exports.CreateProductInput = exports.UpdateBioFactorInput = exports.CreateBioFactorInput = exports.RefreshToken = exports.Login = exports.Register = exports.UpdateArticleInput = exports.CreateArticleInput = void 0;
 class CreateArticleInput {
 }
 exports.CreateArticleInput = CreateArticleInput;
@@ -13,6 +13,9 @@ exports.Register = Register;
 class Login {
 }
 exports.Login = Login;
+class RefreshToken {
+}
+exports.RefreshToken = RefreshToken;
 class CreateBioFactorInput {
 }
 exports.CreateBioFactorInput = CreateBioFactorInput;
@@ -55,6 +58,9 @@ exports.IMutation = IMutation;
 class Auth {
 }
 exports.Auth = Auth;
+class Token {
+}
+exports.Token = Token;
 class BioFactor {
 }
 exports.BioFactor = BioFactor;

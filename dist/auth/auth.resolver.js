@@ -26,6 +26,9 @@ let AuthResolver = class AuthResolver {
     login(login) {
         return this.authService.login(login);
     }
+    async refreshToken(refreshToken) {
+        return this.authService.refreshToken(refreshToken);
+    }
 };
 __decorate([
     (0, graphql_1.Mutation)('register'),
@@ -41,6 +44,13 @@ __decorate([
     __metadata("design:paramtypes", [graphql_2.Login]),
     __metadata("design:returntype", void 0)
 ], AuthResolver.prototype, "login", null);
+__decorate([
+    (0, graphql_1.Mutation)('refreshToken'),
+    __param(0, (0, graphql_1.Args)('refreshToken')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [graphql_2.RefreshToken]),
+    __metadata("design:returntype", Promise)
+], AuthResolver.prototype, "refreshToken", null);
 AuthResolver = __decorate([
     (0, graphql_1.Resolver)('Auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

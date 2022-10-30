@@ -1,4 +1,4 @@
-import { Login, Register } from 'src/types/graphql';
+import { Login, RefreshToken, Register } from 'src/types/graphql';
 import { AuthService } from './auth.service';
 export declare class AuthResolver {
     private readonly authService;
@@ -8,6 +8,10 @@ export declare class AuthResolver {
         refreshToken: string;
     }>;
     login(login: Login): Promise<{
+        accessToken: string;
+        refreshToken: string;
+    }>;
+    refreshToken(refreshToken: RefreshToken): Promise<{
         accessToken: string;
         refreshToken: string;
     }>;
