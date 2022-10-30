@@ -8,6 +8,15 @@ export declare class UpdateArticleInput {
     description: string;
     link: string;
 }
+export declare class Register {
+    email: string;
+    password: string;
+    name?: Nullable<string>;
+}
+export declare class Login {
+    email: string;
+    password: string;
+}
 export declare class CreateBioFactorInput {
     type: string;
     name: string;
@@ -58,11 +67,6 @@ export declare class UpdateStepInput {
     description: string;
     complete: boolean;
 }
-export declare class CreateUserInput {
-    name: string;
-    email: string;
-    password: string;
-}
 export declare class UpdateUserInput {
     id: number;
     name: string;
@@ -94,6 +98,8 @@ export declare abstract class IMutation {
     abstract createArticle(createArticleInput: CreateArticleInput): Article | Promise<Article>;
     abstract updateArticle(updateArticleInput: UpdateArticleInput): Article | Promise<Article>;
     abstract removeArticle(id: number): Nullable<Article> | Promise<Nullable<Article>>;
+    abstract register(register: Register): Auth | Promise<Auth>;
+    abstract login(login: Login): Auth | Promise<Auth>;
     abstract createBioFactor(createBioFactorInput: CreateBioFactorInput): BioFactor | Promise<BioFactor>;
     abstract updateBioFactor(updateBioFactorInput: UpdateBioFactorInput): BioFactor | Promise<BioFactor>;
     abstract removeBioFactor(id: number): Nullable<BioFactor> | Promise<Nullable<BioFactor>>;
@@ -108,9 +114,14 @@ export declare abstract class IMutation {
     abstract createStep(createStepInput: CreateStepInput): Step | Promise<Step>;
     abstract updateStep(updateStepInput: UpdateStepInput): Step | Promise<Step>;
     abstract removeStep(id: number): Nullable<Step> | Promise<Nullable<Step>>;
-    abstract createUser(createUserInput: CreateUserInput): User | Promise<User>;
     abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
     abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
+}
+export declare class Auth {
+    accessToken: string;
+    refreshToken: string;
+    name?: Nullable<string>;
+    user?: Nullable<User>;
 }
 export declare class BioFactor {
     id: number;

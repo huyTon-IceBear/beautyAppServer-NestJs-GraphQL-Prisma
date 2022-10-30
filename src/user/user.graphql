@@ -5,12 +5,6 @@ type User {
   password: String!
 }
 
-input CreateUserInput {
-  name: String!
-  email: String!
-  password: String!
-}
-
 input UpdateUserInput {
   id: Int!
   name: String!
@@ -23,7 +17,6 @@ type Query {
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User
 }

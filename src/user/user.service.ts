@@ -1,16 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateUserInput, UpdateUserInput } from 'src/types/graphql';
+import { UpdateUserInput } from 'src/types/graphql';
 
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
-
-  create({ name, email, password }: CreateUserInput) {
-    return this.prisma.user.create({
-      data: { name, email, password },
-    });
-  }
 
   findAll() {
     return this.prisma.user.findMany();

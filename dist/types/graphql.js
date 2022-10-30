@@ -1,12 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = exports.Step = exports.Routine = exports.Profile = exports.Product = exports.BioFactor = exports.IMutation = exports.IQuery = exports.Article = exports.UpdateUserInput = exports.CreateUserInput = exports.UpdateStepInput = exports.CreateStepInput = exports.CreateRoutineInput = exports.UpdateProfileInput = exports.CreateProfileInput = exports.UpdateProductInput = exports.CreateProductInput = exports.UpdateBioFactorInput = exports.CreateBioFactorInput = exports.UpdateArticleInput = exports.CreateArticleInput = void 0;
+exports.User = exports.Step = exports.Routine = exports.Profile = exports.Product = exports.BioFactor = exports.Auth = exports.IMutation = exports.IQuery = exports.Article = exports.UpdateUserInput = exports.UpdateStepInput = exports.CreateStepInput = exports.CreateRoutineInput = exports.UpdateProfileInput = exports.CreateProfileInput = exports.UpdateProductInput = exports.CreateProductInput = exports.UpdateBioFactorInput = exports.CreateBioFactorInput = exports.Login = exports.Register = exports.UpdateArticleInput = exports.CreateArticleInput = void 0;
 class CreateArticleInput {
 }
 exports.CreateArticleInput = CreateArticleInput;
 class UpdateArticleInput {
 }
 exports.UpdateArticleInput = UpdateArticleInput;
+class Register {
+}
+exports.Register = Register;
+class Login {
+}
+exports.Login = Login;
 class CreateBioFactorInput {
 }
 exports.CreateBioFactorInput = CreateBioFactorInput;
@@ -34,9 +40,6 @@ exports.CreateStepInput = CreateStepInput;
 class UpdateStepInput {
 }
 exports.UpdateStepInput = UpdateStepInput;
-class CreateUserInput {
-}
-exports.CreateUserInput = CreateUserInput;
 class UpdateUserInput {
 }
 exports.UpdateUserInput = UpdateUserInput;
@@ -49,6 +52,9 @@ exports.IQuery = IQuery;
 class IMutation {
 }
 exports.IMutation = IMutation;
+class Auth {
+}
+exports.Auth = Auth;
 class BioFactor {
 }
 exports.BioFactor = BioFactor;

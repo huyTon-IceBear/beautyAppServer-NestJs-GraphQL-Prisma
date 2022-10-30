@@ -16,11 +16,6 @@ let UserService = class UserService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    create({ name, email, password }) {
-        return this.prisma.user.create({
-            data: { name, email, password },
-        });
-    }
     findAll() {
         return this.prisma.user.findMany();
     }

@@ -23,6 +23,7 @@ const routine_module_1 = require("./routine/routine.module");
 const step_module_1 = require("./step/step.module");
 const article_module_1 = require("./article/article.module");
 const product_module_1 = require("./product/product.module");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -48,6 +49,7 @@ AppModule = __decorate([
             step_module_1.StepModule,
             article_module_1.ArticleModule,
             product_module_1.ProductModule,
+            auth_module_1.AuthModule,
         ],
         controllers: [],
         providers: [prisma_service_1.PrismaService],

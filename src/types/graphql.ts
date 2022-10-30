@@ -20,6 +20,17 @@ export class UpdateArticleInput {
     link: string;
 }
 
+export class Register {
+    email: string;
+    password: string;
+    name?: Nullable<string>;
+}
+
+export class Login {
+    email: string;
+    password: string;
+}
+
 export class CreateBioFactorInput {
     type: string;
     name: string;
@@ -79,12 +90,6 @@ export class UpdateStepInput {
     complete: boolean;
 }
 
-export class CreateUserInput {
-    name: string;
-    email: string;
-    password: string;
-}
-
 export class UpdateUserInput {
     id: number;
     name: string;
@@ -135,6 +140,10 @@ export abstract class IMutation {
 
     abstract removeArticle(id: number): Nullable<Article> | Promise<Nullable<Article>>;
 
+    abstract register(register: Register): Auth | Promise<Auth>;
+
+    abstract login(login: Login): Auth | Promise<Auth>;
+
     abstract createBioFactor(createBioFactorInput: CreateBioFactorInput): BioFactor | Promise<BioFactor>;
 
     abstract updateBioFactor(updateBioFactorInput: UpdateBioFactorInput): BioFactor | Promise<BioFactor>;
@@ -163,11 +172,16 @@ export abstract class IMutation {
 
     abstract removeStep(id: number): Nullable<Step> | Promise<Nullable<Step>>;
 
-    abstract createUser(createUserInput: CreateUserInput): User | Promise<User>;
-
     abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
 
     abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
+}
+
+export class Auth {
+    accessToken: string;
+    refreshToken: string;
+    name?: Nullable<string>;
+    user?: Nullable<User>;
 }
 
 export class BioFactor {

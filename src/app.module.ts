@@ -14,6 +14,7 @@ import { RoutineModule } from './routine/routine.module';
 import { StepModule } from './step/step.module';
 import { ArticleModule } from './article/article.module';
 import { ProductModule } from './product/product.module';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -36,6 +37,7 @@ import { ProductModule } from './product/product.module';
     StepModule,
     ArticleModule,
     ProductModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [PrismaService],

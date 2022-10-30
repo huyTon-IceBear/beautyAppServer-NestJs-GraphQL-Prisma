@@ -20,9 +20,6 @@ let UserResolver = class UserResolver {
     constructor(userService) {
         this.userService = userService;
     }
-    create(createUserInput) {
-        return this.userService.create(createUserInput);
-    }
     findAll() {
         return this.userService.findAll();
     }
@@ -36,13 +33,6 @@ let UserResolver = class UserResolver {
         return this.userService.remove(id);
     }
 };
-__decorate([
-    (0, graphql_1.Mutation)('createUser'),
-    __param(0, (0, graphql_1.Args)('createUserInput')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [graphql_2.CreateUserInput]),
-    __metadata("design:returntype", void 0)
-], UserResolver.prototype, "create", null);
 __decorate([
     (0, graphql_1.Query)('users'),
     __metadata("design:type", Function),
