@@ -16,6 +16,7 @@ const argon = require("argon2");
 const runtime_1 = require("@prisma/client/runtime");
 const jwt_1 = require("@nestjs/jwt");
 const config_1 = require("@nestjs/config");
+const client_1 = require("@prisma/client");
 let AuthService = class AuthService {
     constructor(prisma, jwt, config) {
         this.prisma = prisma;
@@ -30,9 +31,10 @@ let AuthService = class AuthService {
                     name,
                     email,
                     password: hash,
+                    role: client_1.Role.USER,
                 },
             });
-            return this.signToken(user.id, user.email);
+            return this.signToken(user.id, user.email, user.role);
         }
         catch (error) {
             if (error instanceof runtime_1.PrismaClientKnownRequestError) {
@@ -54,23 +56,24 @@ let AuthService = class AuthService {
         const pwMatches = await argon.verify(user.password, password);
         if (!pwMatches)
             throw new common_1.ForbiddenException('Credentials incorrect');
-        return this.signToken(user.id, user.email);
+        return this.signToken(user.id, user.email, user.role);
     }
     refreshToken({ token }) {
         try {
-            const { userId, email } = this.jwt.verify(token, {
+            const { userId, email, role } = this.jwt.verify(token, {
                 secret: this.config.get('REFRESH_SECRET'),
             });
-            return this.signToken(userId, email);
+            return this.signToken(userId, email, role);
         }
         catch (e) {
             throw new common_1.UnauthorizedException();
         }
     }
-    async signToken(userId, email) {
+    async signToken(userId, email, role) {
         const payload = {
             sub: userId,
             email,
+            role,
         };
         const accessToken = await this.jwt.signAsync(payload, {
             expiresIn: '30m',

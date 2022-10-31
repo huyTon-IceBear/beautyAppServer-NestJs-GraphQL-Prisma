@@ -16,6 +16,13 @@ model User {
   name     String?
   password String
   profile  Profile?
+
+  role Role @default(USER)
+}
+
+enum Role {
+  ADMIN
+  USER
 }
 
 model Profile {

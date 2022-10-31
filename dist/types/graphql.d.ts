@@ -165,9 +165,10 @@ export declare class Step {
 }
 export declare class User {
     id: number;
-    name: string;
+    name?: Nullable<string>;
     email: string;
-    password: string;
+    password?: Nullable<string>;
+    role: string;
 }
 export declare type JWT = any;
 export declare type DateTime = any;

@@ -234,9 +234,10 @@ export class Step {
 
 export class User {
     id: number;
-    name: string;
+    name?: Nullable<string>;
     email: string;
-    password: string;
+    password?: Nullable<string>;
+    role: string;
 }
 
 export type JWT = any;

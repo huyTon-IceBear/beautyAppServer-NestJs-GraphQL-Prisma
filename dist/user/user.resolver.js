@@ -13,7 +13,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserResolver = void 0;
+const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
+const roles_decorator_1 = require("../auth/decorators/roles.decorator");
+const guard_1 = require("../auth/guard");
+const roles_enum_1 = require("../enums/roles.enum");
 const graphql_2 = require("../types/graphql");
 const user_service_1 = require("./user.service");
 let UserResolver = class UserResolver {
@@ -35,6 +39,8 @@ let UserResolver = class UserResolver {
 };
 __decorate([
     (0, graphql_1.Query)('users'),
+    (0, common_1.UseGuards)(guard_1.GqlAuthGuard, guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)(roles_enum_1.default.ADMIN),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)

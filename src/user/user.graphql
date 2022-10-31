@@ -1,8 +1,9 @@
 type User {
   id: Int!
-  name: String!
+  name: String
   email: String!
-  password: String!
+  password: String
+  role: String!
 }
 
 input UpdateUserInput {

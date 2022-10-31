@@ -9,6 +9,7 @@ import * as argon from 'argon2';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { Role } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -29,10 +30,11 @@ export class AuthService {
           name,
           email,
           password: hash,
+          role: Role.USER,
         },
       });
 
-      return this.signToken(user.id, user.email);
+      return this.signToken(user.id, user.email, user.role);
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {
@@ -58,16 +60,16 @@ export class AuthService {
     // if password incorrect throw exception
     if (!pwMatches) throw new ForbiddenException('Credentials incorrect');
 
-    return this.signToken(user.id, user.email);
+    return this.signToken(user.id, user.email, user.role);
   }
 
   refreshToken({ token }: RefreshToken) {
     try {
-      const { userId, email } = this.jwt.verify(token, {
+      const { userId, email, role } = this.jwt.verify(token, {
         secret: this.config.get('REFRESH_SECRET'),
       });
 
-      return this.signToken(userId, email);
+      return this.signToken(userId, email, role);
     } catch (e) {
       throw new UnauthorizedException();
     }
@@ -76,10 +78,12 @@ export class AuthService {
   async signToken(
     userId: number,
     email: string,
+    role: Role,
   ): Promise<{ accessToken: string; refreshToken: string }> {
     const payload = {
       sub: userId,
       email,
+      role,
     };
 
     const accessToken = await this.jwt.signAsync(payload, {
