@@ -53,6 +53,7 @@ yarn prisma generate
 ```bash
 # development
 $ docker-compose up # for running the database
+$ npx prisma studio # to view and edit the data in your database
 $ npm run start
 
 # watch mode
