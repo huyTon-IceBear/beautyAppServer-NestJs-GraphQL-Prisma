@@ -1,7 +1,21 @@
 version: '3.8'
 services:
+  nest-api:
+    container_name: nest-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+
   dev-db:
     image: postgres:13
+    container_name: postgres
+    restart: always
     ports:
       - 5434:5432
     environment:
@@ -10,15 +24,12 @@ services:
       POSTGRES_DB: nest
     networks:
       - glowup
-  # test-db:
-  #   image: postgres:13
-  #   ports:
-  #     - 5435:5432
-  #   environment:
-  #     POSTGRES_USER: postgres
-  #     POSTGRES_PASSWORD: 123
-  #     POSTGRES_DB: nest
-  #   networks:
-  #     - freecodecamp
+    volumes:
+      - postgres:/var/lib/postgresql/data
 networks:
   glowup:
+
+
+volumes:
+  postgres:
+    name: nest-db
